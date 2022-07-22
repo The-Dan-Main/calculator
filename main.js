@@ -1,32 +1,51 @@
-/*
- * ATTENTION: The "eval" devtool has been used (maybe by default in mode: "development").
- * This devtool is neither made for production nor for readable output files.
- * It uses "eval()" calls to create a separate source file in the browser devtools.
- * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
- * or disable the default devtool with "devtool: false".
- * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
- */
-/******/ (() => { // webpackBootstrap
-/******/ 	var __webpack_modules__ = ({
+"strict use"
 
-/***/ "./src/index.js":
-/*!**********************!*\
-  !*** ./src/index.js ***!
-  \**********************/
-/***/ (() => {
+let result = []
+let outputLine = document.getElementById("outputLine")
+let resultDisplay = document.getElementById("resultDisplay")
 
-eval("console.log(\"Hello World!\");\n\n\n//# sourceURL=webpack://my-webpack-project/./src/index.js?");
+let enter = document.getElementById("enter")
+enter.addEventListener("click", () => {
+    // console.log("Enter wurde geklickt")
+    
+    let currentResult = result.join("")
+    // console.log("Result: ",currentResult)
+    outputLine.innerText = currentResult
+    resultDisplay.innerText = eval(currentResult)
 
-/***/ })
+})
+let deleteEl = document.getElementById("del")
+deleteEl.addEventListener("click", () => {
+    result.pop()
+    let currentResult = result.join("")
+    outputLine.innerText = currentResult
+})
 
-/******/ 	});
-/************************************************************************/
-/******/ 	
-/******/ 	// startup
-/******/ 	// Load entry module and return exports
-/******/ 	// This entry module can't be inlined because the eval devtool is used.
-/******/ 	var __webpack_exports__ = {};
-/******/ 	__webpack_modules__["./src/index.js"]();
-/******/ 	
-/******/ })()
-;
+let clear = document.getElementById("clear")
+clear.addEventListener("click", () => {
+    // console.log("Clear wurde geklickt")
+    outputLine.innerText = ""
+    resultDisplay.innerText = ""
+    result = []
+    
+})
+
+let numbers = document.querySelectorAll(".numbers")
+for (const number of numbers) {
+    number.addEventListener("click", (event) => {
+        // console.log(event)   
+        result.push(event.target.innerText)
+        let currentResult = result.join("")
+        // console.log("Result: ",currentResult)
+        outputLine.innerText = currentResult
+})}
+
+let operators = document.querySelectorAll(".operator")
+for (const operator of operators) {
+    operator.addEventListener("click", (event) => {
+        // console.log(event)   
+        result.push(event.target.innerText)
+        let currentResult = result.join("")
+        // console.log("Result: ",currentResult)
+        outputLine.innerText = currentResult
+})}
